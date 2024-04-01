@@ -116,9 +116,6 @@ export class HomeComponent {
       if (!fighter){
         return
       }
-
-      console.log(fighter)
-      console.log(report)
       
       await this.submitGenericInput(JSON.stringify({
         method: "start_match",
@@ -164,7 +161,6 @@ export class HomeComponent {
   }
 
   parsePayloads(list: any[], isVoucher: boolean = false) {
-    console.log(list)
     let newList = list.map((item: any) => {
       let newItem = item.node
       let payload

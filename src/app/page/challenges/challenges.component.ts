@@ -58,7 +58,6 @@ export class ChallengesComponent {
     let erc20balance = await this.httpService.getERC20Balance(this.onboardService.getConnectedWallet(), this.ethereumService.getTokenAddres())
     let bigBalance = ethers.BigNumber.from(erc20balance.toString())
     let bigWage = ethers.BigNumber.from(report.amount.toString()).toString()
-    console.log(bigBalance, bigWage)
     
     if (bigBalance.lt(bigWage)) {
       alert ("You don't have enough balance to accept this fight. To deposit more, go to assets page.")

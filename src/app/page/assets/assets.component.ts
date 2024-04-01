@@ -127,7 +127,6 @@ export class AssetsComponent {
 
   async loadRequests() {
     this.vouchers = await this.graphqlService.getUserVouchers(this.onboardService.getConnectedWallet())
-    console.log(this.vouchers)
   }
 
   openRequest(voucher:any) {

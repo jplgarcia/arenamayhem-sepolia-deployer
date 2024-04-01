@@ -47,7 +47,6 @@ function preload() {
  * @param {*} hp int new HP in %. 0 - 100
  */
 function setPlayerHP(player, hp) {
-    console.log(player, hp)
     let bar
     if (player == 0) {
         bar = document.getElementById("hp1-bar")
@@ -56,7 +55,6 @@ function setPlayerHP(player, hp) {
     }
     if (hp < 0)
     hp = 0
-    console.log(bar)
     bar.style.width = (200 * (hp/100)) + "px"
 }
 

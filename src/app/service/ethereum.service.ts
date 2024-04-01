@@ -45,6 +45,16 @@ export class EthereumService {
     if (!this.onboardService.isWalletConnected()) {
       await this.onboardService.connectWallet();
     }
+
+    let networkId = await window.ethereum.request({ method: 'net_version' })
+    console.log(networkId)
+    if (networkId.toLowerCase() != this.onboardService.chainInfo.id.toLowerCase()) {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: this.onboardService.chainInfo.id.toLowerCase() }]
+      })
+    }
+
     this.provider = new ethers.providers.Web3Provider(window.ethereum);
     this.signer = this.provider.getSigner();
 

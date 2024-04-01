@@ -18,6 +18,7 @@ import { GraphqlService } from '../../service/graphql.service';
 })
 export class WithdrawVoucherComponent {
 
+  voucher: any
   loaded = false
   executed = false
 
@@ -29,16 +30,13 @@ export class WithdrawVoucherComponent {
   async ngAfterViewInit() {
     await this.ethereumService.initEthereum();
     this.executed = await this.ethereumService.wasVoucherExecuted(this.data.input.index, this.data.index)
-    console.log(this.executed)
+    this.voucher = await this.graphqlService.getVoucherWithProof(this.data.index, this.data.input.index)
     this.loaded = true
   }
 
   async execute() {
     let voucher = await this.graphqlService.getVoucherWithProof(this.data.index, this.data.input.index)
-    console.log("voucher")
-    console.log(voucher)
     await this.ethereumService.initEthereum();
     await this.ethereumService.voucherExecuteCall(voucher.destination, voucher.payload, voucher.proof)
-    console.log(this.data)
   }
 }

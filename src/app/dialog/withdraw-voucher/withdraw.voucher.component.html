@@ -5,7 +5,7 @@
         </div>
     </div>
 
-    <div *ngIf="loaded && !executed">
+    <div *ngIf="loaded && !executed && voucher && voucher.proof">
         <h1 mat-dialog-title></h1>
         <div mat-dialog-content>
         <p>Confirm withdraw of assets:</p>
@@ -15,6 +15,15 @@
         <div mat-dialog-actions>
             <button mat-flat-button color="primary" (click)="execute()">Confirm</button>
         </div>
+    </div>
+
+    <div *ngIf="loaded && !executed && voucher && !voucher.proof">
+        <h1 mat-dialog-title></h1>
+        <div mat-dialog-content>
+            <p>Wait for epoch</p>
+            <p>{{data.amount}}</p>
+        </div>
+
     </div>
 
     <div *ngIf="loaded && executed">

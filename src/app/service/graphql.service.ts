@@ -135,7 +135,6 @@ export class GraphqlService {
     `;
 
     let result = await (this.client.query(query, {})).toPromise()
-    console.log(result)
     if (!result || !result.data.notices.edges){
       return []
     }
@@ -159,7 +158,6 @@ export class GraphqlService {
         list.push(json)
       }
     })
-    console.log(list)
     return list
   }
 
@@ -181,7 +179,6 @@ export class GraphqlService {
         list.push(newItem)
       }
     })
-    console.log(list)
     return list
   }
 }

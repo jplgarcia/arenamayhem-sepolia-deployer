@@ -12,19 +12,20 @@ export class OnboardService {
   private walletConnected = false;
   public wallets: WalletState[] = [];
 
-  
+  public chainInfo = {
+    id: '0xaa36a7', // Ethereum mainnet
+    token: 'ETH',
+    label: 'Sepolia',
+    rpcUrl: 'https://eth-sepolia.g.alchemy.com/v2/hr7r2ANATPNHZti1Ip82GDfrrwPiR6Pl'
+  }
+
   constructor() {
     const injected = injectedModule();
     
     this.onboard = Onboard({
       wallets: [injected],
       chains: [
-        {
-          id: '0xaa36a7', // Ethereum mainnet
-          token: 'ETH',
-          label: 'Sepolia',
-          rpcUrl: 'https://eth-sepolia.g.alchemy.com/v2/hr7r2ANATPNHZti1Ip82GDfrrwPiR6Pl'
-        }
+        this.chainInfo
         // Add other chains here if needed
       ],
       appMetadata: {
@@ -38,6 +39,10 @@ export class OnboardService {
         ]
       }
     });
+  }
+
+  public setOnboardChain() {
+    this.onboard.setChain({chainId: this.chainInfo.id})
   }
 
   async connectWallet() {

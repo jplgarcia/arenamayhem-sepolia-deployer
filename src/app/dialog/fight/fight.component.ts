@@ -36,9 +36,7 @@ export class FightComponent {
 
   ngAfterViewInit(): void {
     // Your code here, will run after the view is initialized
-    console.log(document);
     preload()
-    console.log(this.input, this.fighters)
     fight(this.input,this.fighters)
   }
   
